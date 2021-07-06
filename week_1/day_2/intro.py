@@ -1,5 +1,5 @@
 # Python
-
+'''
 #What is python
     #Programming language
         #Dynamic
@@ -92,3 +92,63 @@ game = "Monster Hunter Rise" #good variable name
 
     for hot_dog in range(10): # use i for index typically
         print("hello")
+'''
+
+
+# Functions
+    # Naming Conventions
+        # functions should be snake case
+    # ANY TIME YOU SEE SOMETHING FOLLOWED BY () IT IS A FUNCTION
+# DEFINE
+    # write the code of the function
+    # this DOES NOT RUN THE FUNCTION
+# Parameters
+    # variables that hold the data passed to the function
+def add_two_things(a, b):
+    print(f"The value of a is {a}")
+    print(f"The value of b is {b}")
+    c = a + b
+    print(c)
+
+# CALL
+    # calling will run the function
+# Arguments
+    # actual data passed to the function
+    # arguments are assigned left to right
+num1 = 432
+num2 = 234
+add_two_things(45, 57)
+add_two_things(num1, num2)
+
+def make_jelly_beans(sugar, water, coloring, syrup):
+    jelly_beans = "Dem some gud beanz"
+    return jelly_beans
+
+make_jelly_beans("white surgar", "dirty pond water", "red coloring", "corn syrup")
+
+
+# Return vs Print
+print("=" * 80)
+
+def multiply_print(spam, baked_beans):
+    print(spam * baked_beans)
+
+def multiply_return(spam, baked_beans):
+    return(spam * baked_beans)
+
+eggs = multiply_print(5, 5)
+print(eggs)
+eggs = multiply_return(5, 5)
+print(eggs)
+
+# Default Parameters
+def greet(name = "", repeat = 2):
+    print(f"Good Morning {name}!\n" * repeat)
+
+greet()
+greet("Shawn")
+greet("Shawn", 5)
+#greet(5, "Cody") this crashes
+# Named arguments
+greet(name = "Cody", repeat = 3)
+greet(repeat = 17, name = "Christian")
