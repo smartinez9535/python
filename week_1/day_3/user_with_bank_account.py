@@ -1,13 +1,12 @@
-class User:		# here's what we have so far
+class User:
     def __init__(self, name, email):
         self.name = name
         self.email = email
-        self.account = [BankAccount(int_rate=0.02, balance=0)]	# added this line
+        self.account = [BankAccount(int_rate=0.02, balance=0)]
 
-    # adding the deposit method
-    def make_deposit(self, amount, account_number):	# takes an argument that is the amount of the deposit
+    def make_deposit(self, amount, account_number):	
         self.account[account_number].deposit(amount)
-        return self	# the specific user's account increases by the amount of the value received
+        return self	
 
     def make_withdrawal(self, amount, account_number):
         self.account[account_number].withdraw(amount)
@@ -27,11 +26,8 @@ class User:		# here's what we have so far
     
 
 class BankAccount:
-    # don't forget to add some default values for these parameters!
     all_accounts = []
     def __init__(self, int_rate = 0.02, balance = 0): 
-        # your code here! (remember, instance attributes go here)
-        # don't worry about user info here; we'll involve the User class soon
         self.int_rate = int_rate
         self.balance = balance
         BankAccount.all_accounts.append(self)
@@ -61,7 +57,6 @@ class BankAccount:
 
     @classmethod
     def all_accounts_info(cls):
-        # we use cls to refer to the class
         for account in cls.all_accounts:
             account.display_account_info()
 
