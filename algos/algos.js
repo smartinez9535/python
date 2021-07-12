@@ -330,3 +330,110 @@ function longestPalindromicSubstring(str) {
 console.log(longestPalindromicSubstring(str1))
 console.log(longestPalindromicSubstring(str2))
 console.log(longestPalindromicSubstring(str3))
+
+
+
+//----------------------------------------------------------------------------------
+
+
+/* 
+String Encode
+You are given a string that may contain sequences of consecutive characters.
+Create a function to shorten a string by including the character,
+then the number of times it appears. 
+
+
+If final result is not shorter (such as "bb" => "b2" ),
+return the original string.
+*/
+
+const str1 = "aaaabbcddd";
+const expected1 = "a4b2c1d3";
+
+const str2 = "";
+const expected2 = "";
+
+const str3 = "a";
+const expected3 = "a";
+
+const str4 = "bbcc";
+const expected4 = "bbcc";
+
+function encodeStr(str) {
+    var count = 1
+    var result = ""
+
+    for (var i = 0; i < str.length; i++){
+        result += str[i]
+        for (var y = i + 1; y < str.length; y++){
+        if (str[y] == str[i]){
+            count++
+        }
+        else{
+            result += count
+            i = y - 1 // if i = y, would i become y+1 on next iteration? Meant to skip to next non-repeated letter
+            count = 1
+        }
+        }
+    }
+    if (result.length >= str.length){
+        return str
+    }
+    return result;
+}
+
+/*****************************************************************************/
+
+/* 
+String Decode  
+*/
+
+const str1 = "a3b2c1d3";
+const expected1 = "aaabbcddd";
+
+function decodeStr(str) {
+    var result = ""
+
+    for (var i = 0; i < str.length; i++){
+        if (i % 2 == 0){ //letters will be on even indices
+        result += str[i] * parseInt(str[i + 1]) //insert letters into string * the value next to it, this probably doesn't work
+        }
+    }
+    return result
+}
+
+/*
+const str2 = "a300b2c1d3";
+
+Chris Solution
+function decodeStr(str) {
+    //setup
+    let decoded = "";
+
+    //work
+    for (let i = 0; i < str.length; i++) {
+        let numStr = str[i]
+        //let n = parseInt(str[i])
+        // str[i] is a number: n = number
+        // str[i] is a letter: n = NaN
+
+        let k = i + 1; -------------->What if number goes over 9
+        while (isNumeric(str[k])) {
+            numStr += str[k]
+            k++
+        }
+
+        let n = parseInt(numStr)
+        if (n) {
+            //when will this statement run? when n = number
+            decoded += str[i - 1].repeat(n); // "a".repeat(3) => "aaa"
+            // for (let j = 0; j < n; j++) {
+                // decoded += str[i - 1];
+            }
+        }
+    }
+    //return
+    return decoded
+}
+
+*/
