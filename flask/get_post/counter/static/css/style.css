@@ -1,0 +1,11 @@
+h1,
+h4{
+    align-items: center;
+    text-align: center;
+}
+
+button,
+input{
+    display: flex;
+    margin: 0 50%;
+}

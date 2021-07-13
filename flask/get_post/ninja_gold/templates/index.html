@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #boxesContainer{
+            width: 1200px;
+            height: 250px;
+            background-color: lightblue;
+            display: flex;
+            gap: 20px;
+        }
+        .jobs{
+            width: 300px;
+            height: 250px;
+            background-color: lightgreen;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        #gold{
+            width: 100px;
+            height: 30px;
+            background-color: coral;
+        }
+        #amountContainer{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Startup</h1>
+        
+            <div class="amountContainer">
+                <p>Your Gold: <div id="gold"><p>0</p></div></p>
+            </div>
+            <div id = "boxesContainer">
+                <div class="jobs">
+                    <form action="/process_money" method="POST">
+                        <input type="hidden">
+                        <h2>Farm</h2>
+                        <p>(earns 10-20 gold)</p>
+                        <button name="button1">Find Gold!</button>
+                    </form>
+                <div class="jobs">
+                    <form action="/process_money" method="POST">
+                        <h2>Farm</h2>
+                        <p>(earns 10-20 gold)</p>
+                        <button name="button2">Find Gold!</button>
+                    </form>
+                </div>
+                <div class="jobs">
+                    <form action="/process_money" method="POST">
+                        <h2>Farm</h2>
+                        <p>(earns 10-20 gold)</p>
+                        <button name="button3">Find Gold!</button>
+                    </form>
+                </div>
+                <div class="jobs">
+                    <form action="/process_money" method="POST">
+                        <h2>Farm</h2>
+                        <p>(earns 10-20 gold)</p>
+                        <button name="button4">Find Gold!</button>
+                    </form>
+                </div>
+            </div>
+        </form>
+        <p>Activities:</p>
+    </div>
+</body>
+</html>

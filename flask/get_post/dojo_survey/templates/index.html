@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css.map">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <form action="/process" method="post">
+        <p>
+            Your Name:
+            <input type="text" name="name" id="">
+        </p>
+        <!--
+        <p>
+            Dojo Location:
+            <select name="location" id="">
+                <option value="San Jose">San Jose</option>
+                <option value="City 2">City 2</option>
+                <option value="City 3">City 3</option>
+            </select>
+        </p>-->
+        <p>
+            Dojo Location (Pick One):<br>
+            <input type="checkbox" name="location" id="loc1" value="San Jose">
+            <label for="loc1"> San Jose</label><br>
+            <input type="checkbox" name="location" id="loc2" value="City 2">
+            <label for="loc2"> City 2</label><br>
+            <input type="checkbox" name="location" id="loc3" value="City 3">
+            <label for="loc3"> City 3</label><br>
+        </p>
+        <!--
+        <p>
+            Favorite Language:
+            <select name="language" id="">
+                <option value="Python">Python</option>
+                <option value="Javascript">Javascript</option>
+                <option value="Java">Java</option>
+            </select>
+        </p>-->
+        <p>
+            Favorite Language:<br>
+            <input type="radio" name="language" id="lang1" value="Python">
+            <label for="lang1">Python</label><br>
+            <input type="radio" name="language" id="lang2" value="Javascript">
+            <label for="lang2">Javascript</label><br>
+            <input type="radio" name="language" id="lang3" value="Java">
+            <label for="lang3">Java</label> 
+        </p>
+        <p>
+            Comment (optional):
+        </p>
+            <textarea name="comment" id="" cols="30" rows="10"></textarea>
+        
+        <p>
+            <button>Submit</button>
+        </p>
+    </form>
+</body>
+</html>

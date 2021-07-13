@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Great Number Game</title>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game</h1>
+    <h3>I am thinking of a number between 1 and 100</h3>
+    <h3>Take a guess!</h3>
+    <div id="hint"><p> {{ hint }} </p></div>
+    <form action="/button" method ="post">
+        <input type="text" name="user_guess" value="1"><br>
+        <button type="submit" name="submit_button" value="Guess">Submit</button><br>
+        <br><button type="submit" name="submit_button" value="Reset">Play Again</button>
+    </form>
+</body>
+</html>
