@@ -589,5 +589,86 @@ function reverseWords(str) {
 }
 console.log(reverseWords(str2))
 
+/*----------------------------------------------------------------------------------------------------------- */
+const str1 = "Hello World";
+const rotateAmnt1 = 0;
+//const expected1 = "Hello World";
+
+const str2 = "Hello World";
+const rotateAmnt2 = 1;
+//const expected2 = "dHello Worl";
+
+const str3 = "Hello World";
+const rotateAmnt3 = 2;
+//const expected3 = "ldHello Wor";
+
+const str4 = "Hello World";
+const rotateAmnt4 = 4;
+//const expected4 = "orldHello W";
+
+const str5 = "ABCD";
+const rotateAmnt5 = 4;
 
 
+function rotateStr(str, n) {
+    var newstr = '';
+    for(var i = str.length - n; i < str.length; i++){
+        newstr += str[i];
+    }
+    for (var i = 0; i < str.length - n; i++){
+        newstr += str[i];
+    }
+    return newstr;
+}
+console.log(rotateStr(str1, rotateAmnt1))
+console.log(rotateStr(str2, rotateAmnt2))
+console.log(rotateStr(str3, rotateAmnt3))
+console.log(rotateStr(str5, rotateAmnt5))
+
+/*
+function rotateStr3(str, n){
+    //let frontStr = str.slice(0, str.length - n)
+    //let endStr = str.slice(str.length - n, str.length);
+
+    //return endStr + frontStr
+    return str.slice(str.length - n, str.length) + str.slice(0,str.length - n)
+}
+*/
+
+/********************************************************************* */
+
+const strA1 = "ABCD";
+const strB1 = "CDAB";
+//const expected1 = true;
+// Explanation: if you start from A in the 2nd string, the letters are in the same order, just rotated
+
+const strA2 = "ABCD";
+const strB2 = "CDBA";
+//const expected2 = false;
+
+// -------
+function isRotation(s1, s2) {
+    let s1Len = s1.length;
+    // if S1 == S2, no rotation
+    if (s1 == s2) return false;
+    
+    while (s1Len){
+        if (rotateStr(s1, s1Len) == s2){
+            return true;
+        }
+        s1Len --
+    }
+    return false;
+}
+
+console.log(isRotation(strA1, strB1))
+console.log(isRotation(strA2, strB2))
+
+/*
+function isRotation(s1, s2){
+    if (s1.length != s2.length || s1 === s2) return false;
+
+    // .includes() - loops through something and checks to see if a value exists inside it
+    return (s1 + s1).includes(s2);
+}
+*/
