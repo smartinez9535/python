@@ -1,0 +1,14 @@
+MVC - industry standard form of organization
+	-Model : dog.py
+		-talks to the DB
+		-all CRUD functionality
+		-Classes to construct Objects : OOP
+	-View : index.html
+		-HTML
+		-what the client sees
+	-Controller : dog_controller.py, user_controller.py (dogs.py on platform)
+		-handles HTTP REQUESTS/RESPONSES
+		-Routes
+		-minimal code
+
+	-Creating a new folder structure
