@@ -13,6 +13,7 @@ class Dog:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.collars = [] # this list will contain collar objects
+        self.toys = []
 
     # in general, a CRUD application needs 5 methods
     # Create has 1 method
