@@ -51,3 +51,21 @@ class User:
         query = "DELETE FROM users WHERE id = %(id)s;"
 
         connectToMySQL("users_schema").query_db(query, data)
+
+
+
+
+
+    #@staticmethod
+    #def login_validate(post_data):
+        #user = User.get_by_email({"email": post_data['email']})
+
+        #if not user:
+            #flash("Invalid Credentials")
+            #return False
+        
+        #if not bcrypt.check_password_hash(user.password, post_data['password']):
+            #flash("Invalid Credentials")
+            #return False
+
+        #return True

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Success Page</title>
+</head>
+<body>
+    <div class="notice" style="color: green;">
+        <p>The email address you entered {{ email_address }}</p>
+        <p>is a VALID email address! Thank you!</p>
+    </div>
+    <table>
+        <thead>
+            <th>Email Addresses Entered</th>
+        </thead>
+        <tbody>
+            {% for login in all_logins %}
+            <tr>
+                <td>{{ login.email_address }}</td>
+                <td>{{ login.updated_at }}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Go Back</a>
+</body>
+</html>

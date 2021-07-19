@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
+from dojo import Dojo
 
 app = Flask(__name__)
 app.secret_key = "Keep it secret, keep it safe"
@@ -12,6 +13,9 @@ def index():
 @app.route("/process", methods = ["POST"])
 def process():
     print(request.form) 
+
+    if not Dojo.validate(request.form):
+        return redirect("/")
 
     session['name'] = request.form['name']
     session['location'] = request.form['location']
