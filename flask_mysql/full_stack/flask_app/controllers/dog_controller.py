@@ -18,6 +18,9 @@ def new_dog():
 # performs the action of creating a new dog
 @app.route("/dogs/create", methods = ['POST'])
 def create_dog():
+    if not Dog.validate(request.form)
+        return redirect("/dogs/new")
+
     #print(request.form)
     Dog.create(request.form)
 
@@ -39,6 +42,9 @@ def edit_dog_form(dog_id):
 # perform the action of updating a single dog
 @app.route("/dogs/<int:dog_id>/update", methods = ["POST"])
 def update_dog(dog_id):
+    if not Dog.validate(request.form)
+        return redirect("/dogs/{dog_id}/edit")
+
     new_dict = {
         "name": request.form['name']
         "age": request.form['age']

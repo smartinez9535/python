@@ -1,5 +1,6 @@
-from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import Collar
 
 class Dog:
@@ -91,3 +92,62 @@ class Dog:
         query = "DELETE FROM dogs WHERE id = %(id)s;"
 
         connectToMySQL("dogs_schema").query_db(query)
+
+
+    # we use static because it doesn't need a class reference or an object reference
+    # we put it in the dog class because it validates dogs
+
+    @staticmethod
+    def validate(post_data):
+        # post_data: this is the data from request.form
+        # post_data is a dictionary: the keys are the form input fields
+        # the purpose of this function is to return True or False
+        is_valid = True # we start with assuming the data is valid
+
+        # we use if statements to check the data
+        # if the data isn't valid, we set is_valid = False
+        ### the data we get from the form is all strings
+        if "name" not in post_data:
+            flash("Stop changing my website you person you")
+            is_valid = False
+        elif len(post_data['name']) < 3:
+            # flash messages exist for just one HTTP req/res cycle
+            flash("Dog name must be at least 3 characters.")
+            is_valid = False
+
+        if len(post_data['age']) < 1:
+            flash("Dog age must be submitted")
+            is_valid = False
+        elif not post_data['age'].isnumeric():
+            flash("Dog age must be a whole number greater than or equal to 0.")
+            is_valid = False
+        
+        if "hair_color" not in post_data:
+            flash("Stop changing my website you person you")
+            is_valid = False
+        elif len(post_data['hair_color']) < 3:
+            flash("Dog hair color must be at least 3 characters")
+            is_valid = False
+
+        return is_valid
+
+
+#errors = []
+#if len(post_data['name']) < 3:
+#    # flash messages exist for just one HTTP req/res cycle
+#    errors.append("Dog name must be at least 3 characters.")
+#
+#if len(post_data['age']) < 1:
+#    errors.append("Dog age must be submitted")
+#
+#        
+#if len(post_data['hair_color']) < 3:
+#    errors.append("Dog hair color must be at least 3 characters")
+#    
+#for error in errors:
+#    flash(error)
+#
+#if len(errors) > 0:
+#    return False
+#else:
+#    return True

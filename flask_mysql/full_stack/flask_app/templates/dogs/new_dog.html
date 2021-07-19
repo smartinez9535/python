@@ -11,7 +11,7 @@
     <form action="/dogs/create" method="post">
         <p>
             Name:
-            <input type="tel" name="name" id="">
+            <input type="text" name="name" id="">
         </p>
         <p>
             Age:
@@ -19,10 +19,17 @@
         </p>
         <p>
             Hair Color:
-            <input type="tel" name="hair_color" id="">
+            <input type="text" name="hair_color" id="">
         </p>
         <button>Create a dog!</button>
         <a href="/">Go Back</a>
     </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 </html>

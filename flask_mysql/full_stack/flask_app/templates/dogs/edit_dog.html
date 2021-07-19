@@ -25,5 +25,12 @@
         <button>Update a dog!</button>
         <a href="/">Go Back</a>
     </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
