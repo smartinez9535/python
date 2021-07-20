@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Edit Recipe</h1>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="main">
+            <form action="/recipes/{{ recipe.id }}/update" method="post">
+                <p>
+                    Name:
+                    <input type="text" name="title" value="{{ recipe.title }}">
+                </p>
+                <p>
+                    Description:<br>
+                    <textarea name="description" rows="7" cols="50">{{ recipe.description }}</textarea>
+                </p>
+                <p>
+                    Instructions:<br>
+                    <textarea name="instructions" rows="7" cols="50">{{ recipe.instructions }}</textarea>
+                </p>
+                <p>
+                    Date Made On:
+                    <input type="date" name="date" value="{{ recipe.date }}">
+                </p>
+                <p>
+                    Under 30 Minutes:
+                    {% if recipe.under_30 == 1 %}
+                        <input type="radio" id="Yes" name="under_30" value="1" checked="checked">Yes</input>
+                        <input type="radio" id="No" name="under_30" value="0">No</input>
+                    {% endif %}
+                    {% if recipe.under_30 == 0 %}
+                        <input type="radio" id="Yes" name="under_30" value="1" >Yes</input>
+                        <input type="radio" id="No" name="under_30" value="0" checked="checked">No</input>
+                    {% endif %}
+                
+                </p>
+                <button>Create</button>
+            </form>
+        <div class="errors">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red;">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

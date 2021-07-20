@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Recipe</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Add New Recipe</h1>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="main">
+            <form action="/recipes/create" method="post">
+                <p>
+                    Name:
+                    <input type="text" name="title">
+                </p>
+                <p>
+                    Description:<br>
+                    <textarea name="description" rows="7" cols="50"></textarea>
+                </p>
+                <p>
+                    Instructions:<br>
+                    <textarea name="instructions" rows="7" cols="50"></textarea>
+                </p>
+                <p>
+                    Date Made On:
+                    <input type="date" name="date">
+                </p>
+                <p>
+                    Under 30 Minutes:
+                    <input type="radio" id="Yes" name="under_30" value="1">Yes</input>
+                    <input type="radio" id="No" name="under_30" value="0">No</input>
+                </p>
+                <button>Create</button>
+            </form>
+        </div>
+        <div class="errors">
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="color: red;">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        </div>
+    </div>
+</body>
+</html>
