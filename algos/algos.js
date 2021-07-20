@@ -922,7 +922,7 @@ console.log(balanceIndex(nums2))*/
 
 //----------Shawn Answer 2------------------------/
 
-function balancePoint(nums){
+function balanceIndex(nums){
     //fixing the length
     //nums.length calculates the length each time
     // what if our algo changes the length of the num
@@ -949,3 +949,41 @@ function balancePoint(nums){
     return false;
 }
 
+/*------------------------------------------------------------------------------------------------------------- */
+
+const nums1 = [1, 3, 5, 6];
+const searchNum1 = 4;
+const expected1 = false;
+
+const nums2 = [4, 5, 6, 8, 12];
+const searchNum2 = 5;
+const expected2 = true;
+
+const nums3 = [3, 4, 6, 8, 12];
+const searchNum3 = 3;
+const expected3 = true;
+
+function binarySearch(sortedNums, searchNum) {
+    let start_index = 0;
+    let end_index = sortedNums.length - 1;
+
+    while (start_index <= end_index){
+        let middle_index = Math.floor((start_index + end_index)/2)
+        if (sortedNums[middle_index] == searchNum){
+            return true;
+        }
+
+        else if (sortedNums[middle_index] > searchNum){
+            end_index = middle_index - 1;
+        }
+
+        else if (sortedNums[middle_index] < searchNum){
+            start_index = middle_index + 1;
+        }
+    }
+    return false
+}
+
+console.log(binarySearch(nums1, searchNum1))
+console.log(binarySearch(nums2, searchNum2))
+console.log(binarySearch(nums3, searchNum3))
