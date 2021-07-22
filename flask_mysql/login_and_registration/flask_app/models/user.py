@@ -12,12 +12,15 @@ class User:
 
     def __init__(self, data):
         self.id = data['id']
+        if data['sighting_id']:
+            self.sighting = sighting.Sighting.get_one({"id": data['sighting_id']})
         self.first_name = data['first_name']
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.sightings = []
 
     @classmethod
     def create(cls, data):
@@ -118,28 +121,15 @@ class User:
 
 
     @staticmethod
-    def validate_login(post_data):
-        is_valid = True
+    def login_validate(post_data):
+        user = User.get_by_email({"email": post_data['email']})
 
-        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-        if "email" not in post_data:
-            flash("Form edited, retry.")
-            is_valid = False
-        elif len(post_data['email']) < 1:
-            flash("Email address is required.")
-            is_valid = False
-        elif not EMAIL_REGEX.match(post_data['email']): 
-            flash("Invalid email address!")
-            is_valid = False
-        elif not User.get_by_email({"email": post_data['email']}):
-            flash("Invalid email address")
-            is_valid = False
-
-        if "password" not in post_data:
-            flash("Form edited, retry.")
-            is_valid = False
-        elif len(post_data['password']) < 8:
-            flash("Password must be at least 8 characters.")
-            is_valid = False
-
-        return is_valid
+        if not user:
+            flash("Invalid Credentials")
+            return False
+        
+        if not bcrypt.check_password_hash(user.password, post_data['password']):
+            flash("Invalid Credentials")
+            return False
+        
+        return True

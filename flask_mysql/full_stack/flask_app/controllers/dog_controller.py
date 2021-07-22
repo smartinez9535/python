@@ -45,12 +45,12 @@ def update_dog(dog_id):
     if not Dog.validate(request.form)
         return redirect("/dogs/{dog_id}/edit")
 
-    new_dict = {
-        "name": request.form['name']
-        "age": request.form['age']
-        "hair_color": request.form['hair_color']
-        "id": dog_id
-    }
+    #new_dict = {
+    #    "name": request.form['name']
+    #    "age": request.form['age']
+    #    "hair_color": request.form['hair_color']
+    #    "id": dog_id
+    #}
     another_dict = {
         **request.form,
         "id": dog_id
