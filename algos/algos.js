@@ -1248,3 +1248,79 @@ function missingValue(unorderedNums) {
 
 console.log(missingValue(nums1))
 console.log(missingValue(nums2))
+
+/*----------------------------------------------------------------------------------------- */
+
+function mutlArr(arr){
+    // BASE CASE
+    if (arr.length < 2) return arr[0]
+    // FORWARD PROGRESS
+    //RECURSIVE CALL
+
+    num = arr[0] // first thing in the arr
+    newArr = arr.slice(1, arr.length) // grabbing everything else
+
+    return num * mutlArr(newArr)
+}
+
+/* 
+    Recursively sum an arr of ints
+*/
+
+const nums1 = [1, 2, 3];
+const expected1 = 6;
+
+function sumArr(nums, sum = 0) {
+  // BASE CASE
+    if (nums.length == 0) return sum;
+  // RECURSIVE CALL
+  // pop out the first num in nums: nums.slice(1)
+    return sumArr(nums.slice(1), (sum += nums[0]));
+}
+
+console.log(sumArr(nums1))
+
+/*****************************************************************************/
+
+/* 
+    Recursive Sigma
+    Input: integer
+    Output: sum of integers from 1 to Input integer
+*/
+
+const num1 = 5;
+const expected1 = 15;
+// Explanation: (1+2+3+4+5)
+
+const num2 = 2.5;
+const expected2 = 3;
+// Explanation: (1+2)
+
+const num3 = -1;
+const expected3 = 0;
+/*
+function recursiveSigma(num, sum = Math.floor(num)) {
+    // base case:
+    num = parseInt(num)
+    if (isNaN(num)) return null;
+    if (num < 1) return 0
+    if (num == 0) return sum
+
+    // recursion
+    return recursiveSigma(num -= 1, sum += num)
+}*/
+
+function recursiveSigma(num) {
+    // Edge cases and setup
+    const n = parseInt(num) // convert floats to integers
+    if (isNaN(num)) return null; // if the num was not a number, return null
+
+    //Base Case
+    if (num < 1) return 0
+
+    // recursion
+    return n + recursiveSigma(n-1)
+}
+
+
+console.log(recursiveSigma(num2))
