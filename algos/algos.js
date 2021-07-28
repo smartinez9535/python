@@ -1324,3 +1324,195 @@ function recursiveSigma(num) {
 
 
 console.log(recursiveSigma(num2))
+
+/*----------------------------------------------------------------------------------- */
+
+/* 
+    Recursive Factorial
+    Input: integer
+    Output: integer, product of ints from 1 up to given integer
+    
+    If less than zero, treat as zero.
+    Bonus: If not integer, truncate (remove decimals).
+    
+    Experts tell us 0! is 1.
+    
+    rFact(3) = 6 (1*2*3)
+    rFact(6.8) = 720 (1*2*3*4*5*6)
+*/
+
+const num1 = 3;
+const expected1 = 6;
+// Explanation: 1*2*3 = 6
+
+const num2 = 6.8;
+const expected2 = 720;
+// Explanation: 1*2*3*4*5*6 = 720
+
+const num3 = 0;
+const expected3 = 1;
+
+function factorial(n) {
+    const num = parseInt(n) // convert floats to integers
+    if (isNaN(num)) return null; // if the num was not a number, return null
+
+    //Base Case
+    if (num <= 0) return 1
+
+    // recursion
+    return num * factorial(n-1)
+}
+
+console.log(factorial(num2))
+
+/*****************************************************************************/
+
+/* 
+    Return the fibonacci number at the nth position, recursively.
+    
+    Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+    The next number is found by adding up the two numbers before it,
+    starting with 0 and 1 as the first two numbers of the sequence.
+*/
+
+const num1 = 0;
+const expected1 = 0;
+
+const num2 = 1;
+const expected2 = 1;
+
+const num3 = 2;
+const expected3 = 1;
+
+const num4 = 3;
+const expected4 = 2;
+
+const num5 = 4;
+const expected5 = 3;
+
+const num6 = 8;
+const expected6 = 21;
+
+/*
+let arr = [0, 1]
+
+function fibonacci(num) {
+    
+    if (arr[num] != undefined){
+        let n = arr[num]
+        arr = [0, 1]
+        return n
+    }
+
+    arr.push(arr[arr.length-1] + arr[arr.length-2])
+    //console.log(arr)
+    return fibonacci(num)
+}*/
+
+// very unoptimized, use fibmemo
+function fibonacci(num) {
+    
+    if(num <= 1){
+        return num;
+    }
+    return fibonacci(num-1) + fibonacci(num-2)
+}
+
+console.log(fibonacci(num6))
+
+// USE THIS ONE
+function fibMemo(n, memo = {0: 0, 1: 1}){
+    //edge case
+    if (n < 0) return null;
+
+    // base case
+    if (memo[n] !== undefined) return memo[n];
+
+    memo[n] = fibMemo(n - 1, memo) + fibMemo(n - 2, memo);
+
+    return memo[n];
+}
+
+
+/*----------------------------------------------------------------------- */
+
+const nums1 = [1, 3, 5, 6];
+const searchNum1 = 4;
+const expected1 = false;
+
+const nums2 = [4, 5, 6, 8, 12];
+const searchNum2 = 5;
+const expected2 = true;
+
+const nums3 = [3, 4, 6, 8, 12];
+const searchNum3 = 3;
+const expected3 = true;
+
+function binarySearch(sortedNums, searchNum) {
+    let start_index = 0;
+    let end_index = sortedNums.length - 1;
+    let middle_index = Math.floor((start_index + end_index)/2)
+    console.log(sortedNums)
+
+    if (start_index > end_index || sortedNums.length < 1) return false;
+
+    if (sortedNums[middle_index] == searchNum){
+        return true;
+    }
+
+    else if (sortedNums[middle_index] > searchNum){
+        newNums = sortedNums.slice(0, middle_index)
+    }
+
+    else (sortedNums[middle_index] < searchNum){
+        newNums = sortedNums.slice(middle_index + 1)
+    }
+
+    return binarySearch(newNums, searchNum)
+}
+
+console.log(binarySearch(nums1, 4))
+console.log(binarySearch(nums2, searchNum2))
+console.log(binarySearch(nums3, 3))
+
+/*
+function binarySearch(sortedNums, searchNum) {
+    let left = 0,
+    right = sortedNums.length - 1;
+    // base case
+    if (left > right) return false;
+
+    let midIdx = Math.floor((left + right) / 2);
+    // if find searchNum, return true
+    // if searchNum in the left part, search left part
+    // if searchNum in the right part, search right part
+    if (sortedNums[midIdx] === searchNum) {
+        return true;
+    } 
+
+    else if (searchNum < sortedNums[midIdx]) {
+        return binarySearch(sortedNums.slice(0, midIdx), searchNum);
+    } 
+    
+    else {
+        return binarySearch(sortedNums.slice(midIdx + 1), searchNum);
+    }
+}*/
+
+
+function binarySearchIndexes(sortedNums, searchNum, leftIdx = 0; rightIdx = sortedNums.length - 1){
+    // BASE CASE
+    if (leftIdx > rightIdx) return false;
+
+    const midIdx = Math.floor((leftIdx + rightIdx) / 2);
+
+    if (sortedNums[midIdx] === searchNum) return true;
+
+    if (searchNum < sortedNums[midIdx]){
+        return binarySearchIndexes(sortedNums, searchNum, 0, midIdx - 1);
+    }
+
+    else{
+        return binarySearchIndexes(sortedNums, searchNum, midIdx + 1, rightIdx);
+    }
+}
