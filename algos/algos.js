@@ -1464,11 +1464,11 @@ function binarySearch(sortedNums, searchNum) {
         newNums = sortedNums.slice(0, middle_index)
     }
 
-    else (sortedNums[middle_index] < searchNum){
-        newNums = sortedNums.slice(middle_index + 1)
+    else{
+        newNums = sortedNums.slice(middle_index + 1);
     }
 
-    return binarySearch(newNums, searchNum)
+    return binarySearch(newNums, searchNum);
 }
 
 console.log(binarySearch(nums1, 4))
@@ -1500,7 +1500,7 @@ function binarySearch(sortedNums, searchNum) {
 }*/
 
 
-function binarySearchIndexes(sortedNums, searchNum, leftIdx = 0; rightIdx = sortedNums.length - 1){
+function binarySearchIndexes(sortedNums, searchNum, leftIdx = 0, rightIdx = sortedNums.length - 1){
     // BASE CASE
     if (leftIdx > rightIdx) return false;
 
@@ -1515,4 +1515,113 @@ function binarySearchIndexes(sortedNums, searchNum, leftIdx = 0; rightIdx = sort
     else{
         return binarySearchIndexes(sortedNums, searchNum, midIdx + 1, rightIdx);
     }
+}
+
+
+/*------------------------------------------------------------------------------------------------------ */
+
+
+/* 
+    Recursively reverse a string
+    helpful methods:
+    str.slice(beginIndex[, endIndex])
+    returns a new string from beginIndex to endIndex exclusive
+*/
+
+const str1 = "abc";
+const expected1 = "cba";
+
+const str2 = "";
+const expected2 = "";
+
+function reverseStr(str) {
+
+    if (str.length <= 1) return str;
+
+    //if (str.length == 1) return str[0];
+
+    tempStr = str.slice(0, str.length - 1)
+    //console.log(tempStr)
+    return (str[str.length - 1] + reverseStr(tempStr))
+}
+
+console.log(reverseStr(str1))
+console.log(reverseStr(str2))
+
+/*****************************************************************************/
+
+/*
+    Sum To One Digit
+    Implement a function sumToOne(num)​ that,
+    given a number, sums that number’s digits
+    repeatedly until the sum is only one digit. Return
+    that final one digit result.
+    Tips:
+    to access digits from a number, need to convert it .toString() to access each digit via index
+    parseInt(arg) returns arg parsed as an integer, or NaN if it couldn't be converted to an int
+    isNaN(arg) used to check if something is NaN
+*/
+
+const num1 = 5;
+const expected1 = 5;
+
+const num2 = 10;
+const expected2 = 1;
+
+const num3 = 25;
+const expected3 = 7;
+
+const num4 = 57;
+const expected4 = 3;
+
+const num5 = 888;
+const expected5 = 6;
+
+const test = 11111;
+
+const num6 = "hello there";
+const expected6 = null;
+
+
+function sumToOneDigit(num) {
+    
+    if(isNaN(parseInt(num))) return null;
+
+    numStr = num.toString()
+    //console.log(numStr.length)
+
+    if (numStr.length == 1) return parseInt(numStr);
+
+    solution = (parseInt(numStr[0]) + (sumToOneDigit(numStr.slice(1))))
+
+    if (solution.toString().length > 1){
+        sumToOneDigit(solution)
+    }
+
+    return solution
+}
+
+console.log(sumToOneDigit(num1))
+console.log(sumToOneDigit(num2))
+console.log(sumToOneDigit(num3))
+console.log(sumToOneDigit(num4))
+console.log(sumToOneDigit(num5))
+console.log(sumToOneDigit(test))
+console.log(sumToOneDigit(num6))
+
+// This is more efficient
+function sum(n){
+    if(isNaN(parseInt(n))) return null;
+
+    //BASE CASE
+    if (n < 10) return n;
+
+    const strNum = n.toString();
+    let sum = 0;
+
+    for (const strDigit of strNum){
+        sum += parseInt(strDigit)
+    }
+
+    return sumToOneDigit(sum);
 }
